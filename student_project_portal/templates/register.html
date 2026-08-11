@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Student Project Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-body d-flex align-items-center justify-content-center vh-100">
+
+    <div class="auth-card p-4 shadow-lg text-center">
+        <div class="auth-header mb-3">
+            <div class="icon-circle mb-2"><i class="fa-solid fa-user-plus fa-2x text-success"></i></div>
+            <h3 class="fw-bold">Create Account</h3>
+            <p class="text-muted small">Register as a Student or Faculty member</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} p-2 text-center mb-3 alert-dismissible fade show" role="alert">
+                        <small>{{ message }}</small>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="mb-3 text-start">
+                <label class="form-label text-secondary small fw-bold">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-user"></i></span>
+                    <input type="text" name="username" class="form-control" placeholder="Choose a username" required>
+                </div>
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="form-label text-secondary small fw-bold">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="Choose a password" required>
+                </div>
+            </div>
+
+            <div class="mb-4 text-start">
+                <label class="form-label text-secondary small fw-bold">Select Role</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-id-badge"></i></span>
+                    <select name="role" class="form-select" required>
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty / Teacher</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success-custom w-100 fw-bold">Register Now</button>
+        </form>
+
+        <div class="mt-4 pt-3 border-top">
+            <span class="small text-muted">Already have an account? </span>
+            <a href="/" class="small fw-bold text-success text-decoration-none ms-1">Login Here</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
